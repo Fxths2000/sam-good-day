@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Have a Lovely Day, Sam!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      color: #444;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 70px;
+      margin-top: 50px;
+      color: #ff6b81;
+    }
+
+    p {
+      font-size: 22px;
+      margin: 20px 0;
+      color: #555;
+    }
+
+    .gif {
+      margin: 30px 0;
+    }
+
+    button {
+      background: linear-gradient(135deg, #f9a1bc, #fbc2eb);
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(255, 105, 135, 0.3);
+    }
+
+    #surprise {
+      display: none;
+      margin-top: 40px;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: sparkle 3s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes sparkle {
+      0% { transform: translateY(0) scale(1); opacity: 1;}
+      100% { transform: translateY(100vh) scale(0.5); opacity: 0;}
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Ei-heart.svg') no-repeat center/cover;
+      animation: float 5s infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0);}
+      50% { transform: translateY(-100px) translateX(50px);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hey Sam! ✨</h1>
+
+  <p>You are pure magic, never forget how amazing you are! 💖</p>
+
+  <div class="gif">
+    <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Cute gif" width="250">
+  </div>
+
+  <p><em>“Wherever life plants you, bloom with grace.” 🌷</em></p>
+
+  <button onclick="alert('Love you, Sam! You’re doing amazing! 🥰')">💌 Click Me!</button>
+
+  <button onclick="startGame()">🎮 Quick Game!</button>
+
+  <button onclick="showSurprise()">🎁 Secret Surprise!</button>
+
+  <!-- Game Area (hidden) -->
+  <div id="gameArea" style="display:none; margin-top:30px; position:relative; height:300px; border:2px dashed #ffc0cb; border-radius:20px;"></div>
+
+  <!-- Thank You Message (hidden) -->
+  <div id="thankYou" style="display:none; margin-top:20px; font-size:24px; color:#ff6b81;"></div>
+
+  <!-- Surprise Area (hidden) -->
+  <div id="surprise">
+    <p style="font-size: 24px;">✨ Sam, you shine brighter than the stars! ✨</p>
+    <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Surprise Gif" width="200">
+  </div>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/7ghk9s.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Rainbow sparkles
+    const colors = ["#ff6b81", "#fbc2eb", "#a29bfe", "#74b9ff", "#ffeaa7", "#81ecec"];
+    for (let i = 0; i < 40; i++) {
+      let sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.animationDuration = (2 + Math.random() * 3) + 's';
+      document.body.appendChild(sparkle);
+    }
+
+    // Hearts
+    for (let i = 0; i < 10; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(heart);
+    }
+
+    function showSurprise() {
+      document.getElementById('surprise').style.display = 'block';
+    }
+
+    function startGame() {
+      const gameArea = document.getElementById('gameArea');
+      const thankYou = document.getElementById('thankYou');
+      thankYou.style.display = 'none';
+      gameArea.style.display = 'block';
+      gameArea.innerHTML = '';
+
+      let heart = document.createElement('div');
+      heart.className = 'heartCatch';
+      heart.style.width = '50px';
+      heart.style.height = '50px';
+      heart.style.background = 'url(https://upload.wikimedia.org/wikipedia/commons/4/4f/Ei-heart.svg) no-repeat center/cover';
+      heart.style.position = 'absolute';
+      heart.style.top = '100px';
+      heart.style.left = '50%';
+      heart.style.transform = 'translateX(-50%)';
+      heart.style.cursor = 'pointer';
+      gameArea.appendChild(heart);
+
+      moveHeart();
+
+      heart.onclick = function() {
+        alert('YAY! You caught the heart, Sam! 💖🥳');
+        gameArea.style.display = 'none';
+        thankYou.innerHTML = '🎉 Thank you for playing, Sam! You’re the best! 🎉';
+        thankYou.style.display = 'block';
+      }
+    }
+
+    function moveHeart() {
+      const heart = document.querySelector('.heartCatch');
+      setInterval(() => {
+        heart.style.top = Math.random() * 250 + 'px';
+        heart.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>
